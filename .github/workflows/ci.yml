@@ -1,8 +1,9 @@
-name: Node CI
+name: Docker CI
 on: push
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm test
+      - name: Build image
+        run: docker build -t my-app:${{ github.sha }} .
